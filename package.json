@@ -1,8 +1,8 @@
 {
   "name": "cursor-browser-bar-button",
   "displayName": "HTML Browser Bar Button",
-  "description": "Open HTML files in Cursor's embedded browser from a globe button in the editor title bar.",
-  "version": "0.1.4",
+  "description": "Open HTML files in Cursor's embedded browser from a globe button in the editor title bar, with an Activity Bar side pane for browser bookmarks.",
+  "version": "0.2.1",
   "publisher": "konashevich",
   "license": "MIT",
   "icon": "icon.png",
@@ -20,7 +20,9 @@
     "embedded browser",
     "globe",
     "web",
-    "local preview"
+    "local preview",
+    "bookmarks",
+    "favorites"
   ],
   "galleryBanner": {
     "color": "#1e3a5f",
@@ -36,7 +38,10 @@
   "homepage": "https://github.com/konashevich/cursor-browser-bar-button#readme",
   "activationEvents": [
     "onCommand:editor.openHtmlInBrowser",
-    "onLanguage:html"
+    "onLanguage:html",
+    "onView:cursorBrowserBarButton.view",
+    "onCommand:cursorBrowserBarButton.openBrowser",
+    "onCommand:cursorBrowserBarButton.openClipboardLocalFile"
   ],
   "main": "./out/extension.js",
   "contributes": {
@@ -46,6 +51,30 @@
         "title": "Open HTML in Browser",
         "category": "HTML Browser",
         "icon": "$(globe)"
+      },
+      {
+        "command": "cursorBrowserBarButton.openBrowser",
+        "title": "Browser: Open Embedded Browser"
+      },
+      {
+        "command": "cursorBrowserBarButton.openClipboardLocalFile",
+        "title": "Browser: Open Local File from Clipboard",
+        "icon": "$(clippy)"
+      },
+      {
+        "command": "cursorBrowserBarButton.addFavorite",
+        "title": "Browser: Add Bookmark",
+        "icon": "$(add)"
+      },
+      {
+        "command": "cursorBrowserBarButton.deleteFavorite",
+        "title": "Browser: Delete Bookmark",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "cursorBrowserBarButton.openFavorite",
+        "title": "Browser: Open Bookmark",
+        "icon": "$(link-external)"
       }
     ],
     "menus": {
@@ -63,6 +92,55 @@
           "when": "resourceExtname == .html || resourceExtname == .htm",
           "group": "1_open",
           "order": 5
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "editor.openHtmlInBrowser",
+          "when": "resourceScheme == file && (resourceExtname == .html || resourceExtname == .htm)",
+          "group": "navigation"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "cursorBrowserBarButton.openClipboardLocalFile",
+          "when": "view == cursorBrowserBarButton.view",
+          "group": "navigation@1"
+        },
+        {
+          "command": "cursorBrowserBarButton.addFavorite",
+          "when": "view == cursorBrowserBarButton.view",
+          "group": "navigation@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "cursorBrowserBarButton.openFavorite",
+          "when": "view == cursorBrowserBarButton.view && viewItem == favorite",
+          "group": "inline"
+        },
+        {
+          "command": "cursorBrowserBarButton.deleteFavorite",
+          "when": "view == cursorBrowserBarButton.view && viewItem == favorite",
+          "group": "inline"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cursorBrowserBarButton",
+          "title": "Browser",
+          "icon": "media/browser.svg"
+        }
+      ]
+    },
+    "views": {
+      "cursorBrowserBarButton": [
+        {
+          "id": "cursorBrowserBarButton.view",
+          "name": "Browser Bookmarks",
+          "contextualTitle": "Browser"
         }
       ]
     }

@@ -1,12 +1,15 @@
 # AGENTS.md — HTML Browser Bar Button
 
-Cursor/VS Code extension: a **globe button** on the editor tab title bar when an `.html` / `.htm` file is open. Clicking it opens the active file in Cursor's embedded browser.
+Cursor/VS Code extension: a **globe button** on the editor tab title bar when an `.html` / `.htm` file is open, plus a **Browser** Activity Bar side pane with bookmarks for the embedded browser.
 
 ## Repository layout
 
 | Path | Purpose |
 |------|---------|
-| `src/extension.ts` | Command handler |
+| `src/extension.ts` | Activation, command registration |
+| `src/browser.ts` | Embedded browser open helpers |
+| `src/bookmarks.ts` | Bookmark tree view provider |
+| `media/browser.svg` | Activity Bar icon |
 | `package.json` | Extension manifest, menus, commands |
 | `CHANGELOG.md` | User-facing version history |
 | `VSIX/` | Packaged `.vsix` artifacts (keep **last 5** only; **tracked in git**) |
@@ -24,6 +27,7 @@ Cursor/VS Code extension: a **globe button** on the editor tab title bar when an
    });
    ```
    Do **not** use `vscode.env.asExternalUri` or `vscode-file://` conversion (breaks with `https://cursor:workspace?file://...`).
+   To open/focus an empty browser tab (Activity Bar click), use `workbench.action.focusOrOpenBrowserEditor`. Do **not** use `workbench.action.browser.open` or `simpleBrowser.show` — those are VS Code commands and are not registered in Cursor.
 4. **Icon** — Use codicon `"icon": "$(globe)"` on the command so the title bar matches other actions. Custom SVG/png icons render with wrong colors.
 
 ## Development

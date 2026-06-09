@@ -2,6 +2,21 @@
 
 All notable changes to the **HTML Browser Bar Button** extension are documented in this file.
 
+## [0.2.1] - 2026-06-09
+
+### Fixed
+
+- Open the embedded browser in Cursor using `workbench.action.focusOrOpenBrowserEditor` instead of the VS Code-only `workbench.action.browser.open` command.
+
+## [0.2.0] - 2026-06-09
+
+### Added
+
+- **Browser** Activity Bar side pane with persistent bookmarks (add, open, delete).
+- Opens the embedded browser when the side pane is shown.
+- **Open Local File from Clipboard** toolbar action for absolute paths and `file://` URLs.
+- Explorer context menu entry to open local HTML files in the embedded browser.
+
 ## [0.1.4] - 2026-06-09
 
 ### Fixed

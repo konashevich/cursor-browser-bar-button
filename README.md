@@ -1,25 +1,36 @@
 # HTML Browser Bar Button
 
-Adds a **globe button** to the editor title bar when you have an HTML file open. One click opens the current file in **Cursor's embedded browser** — right next to actions like Split Editor, without digging through the `...` menu.
+Adds a **globe button** to the editor title bar when you have an HTML file open, plus a **Browser** side pane in the Activity Bar with bookmarks. One click opens the current file or a saved URL in **Cursor's embedded browser**.
 
-Works in **Cursor** and **VS Code** (with the built-in Simple Browser / browser editor integration).
+Works in **Cursor** and **VS Code** (with the built-in browser editor integration).
 
 ## Features
 
 - Globe icon in the primary editor title bar for `.html` / `.htm` files
-- Opens the active file in Cursor's embedded browser
+- **Browser** Activity Bar side pane — opens the embedded browser and lists bookmarks
+- Save, open, and delete bookmarked URLs (persisted across sessions)
+- **Open Local File from Clipboard** — paste an absolute path or `file://` URL from the clipboard
+- Explorer context menu for local HTML files
 - Uses the correct local file URI format for in-editor preview
 - Lightweight — no settings required
 
 ## Usage
 
+### Editor title bar
+
 1. Open any HTML file in the editor.
 2. Click the **globe** button in the top-right of the editor tab bar.
 3. The file opens in Cursor's embedded browser beside your editor.
 
-You can also run the command from the Command Palette:
+You can also run **Open HTML in Browser** (`editor.openHtmlInBrowser`) from the Command Palette, Explorer context menu, or editor tab `...` menu.
 
-**Open HTML in Browser** (`editor.openHtmlInBrowser`)
+### Browser bookmarks side pane
+
+1. Click the **Browser** icon in the Activity Bar — the embedded browser opens automatically.
+2. Click **+** in the side pane title to add a bookmark (URL + name).
+3. Click a bookmark to open it in the embedded browser.
+4. Click the trash icon on a bookmark to delete it.
+5. Click the clipboard icon to open a local file path copied to the clipboard.
 
 ## Requirements
 
