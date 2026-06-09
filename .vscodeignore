@@ -1,0 +1,13 @@
+.vscode/**
+.vscode-test/**
+.specstory/**
+.cursorindexingignore
+src/**
+.gitignore
+tsconfig.json
+**/*.map
+**/*.ts
+node_modules/**
+VSIX/**
+scripts/**
+AGENTS.md

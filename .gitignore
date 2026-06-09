@@ -1,0 +1,5 @@
+out/
+node_modules/
+
+# Ignore stray VSIX in repo root only; VSIX/ artifacts are tracked in git.
+/cursor-browser-bar-button-*.vsix

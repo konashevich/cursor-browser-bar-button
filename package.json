@@ -1,0 +1,84 @@
+{
+  "name": "cursor-browser-bar-button",
+  "displayName": "HTML Browser Bar Button",
+  "description": "Open HTML files in Cursor's embedded browser from a globe button in the editor title bar.",
+  "version": "0.1.4",
+  "publisher": "konashevich",
+  "license": "MIT",
+  "icon": "icon.png",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "html",
+    "browser",
+    "preview",
+    "cursor",
+    "embedded browser",
+    "globe",
+    "web",
+    "local preview"
+  ],
+  "galleryBanner": {
+    "color": "#1e3a5f",
+    "theme": "dark"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/konashevich/cursor-browser-bar-button.git"
+  },
+  "bugs": {
+    "url": "https://github.com/konashevich/cursor-browser-bar-button/issues"
+  },
+  "homepage": "https://github.com/konashevich/cursor-browser-bar-button#readme",
+  "activationEvents": [
+    "onCommand:editor.openHtmlInBrowser",
+    "onLanguage:html"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "editor.openHtmlInBrowser",
+        "title": "Open HTML in Browser",
+        "category": "HTML Browser",
+        "icon": "$(globe)"
+      }
+    ],
+    "menus": {
+      "editor/title": [
+        {
+          "command": "editor.openHtmlInBrowser",
+          "when": "resourceExtname == .html || resourceExtname == .htm",
+          "group": "navigation@3",
+          "order": 1
+        }
+      ],
+      "editor/title/context": [
+        {
+          "command": "editor.openHtmlInBrowser",
+          "when": "resourceExtname == .html || resourceExtname == .htm",
+          "group": "1_open",
+          "order": 5
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "package": "vsce package --no-dependencies",
+    "package:vsix": "npm run compile && vsce package --no-dependencies --out VSIX && node scripts/prune-vsix.mjs",
+    "publish": "vsce publish --no-dependencies"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.2.1",
+    "typescript": "^5.3.3"
+  }
+}
